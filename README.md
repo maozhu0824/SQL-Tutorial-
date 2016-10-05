@@ -56,3 +56,34 @@ ORDER BY Country DESC;
 SELECT * FROM Customers
 ORDER BY Country, CustomerName;
 
+SELECT * FROM Customers
+ORDER BY Country ASC, CustomerName DESC;
+
+# INSERT INTO statement is used to insert new records in a table.
+INSERT INTO table_name
+VALUES (value1,value2,value3,...);
+
+INSERT INTO table_name (column1,column2,column3,...)
+VALUES (value1,value2,value3,...);
+
+INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country) #The CustomerID column is automatically updated with a unique number for each record in the table.
+VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');
+
+INSERT INTO Customers (CustomerName, City, Country)
+VALUES ('Cardinal', 'Stavanger', 'Norway'); 
+
+# SQL UPDATE Statement
+UPDATE table_name
+SET column1=value1,column2=value2,...
+WHERE some_column=some_value;   # The WHERE clause specifies which record or records that should be updated. If you omit the WHERE clause, all records will be updated!
+
+UPDATE Customers
+SET ContactName='Alfred Schmidt', City='Hamburg'
+WHERE CustomerName='Alfreds Futterkiste'; 
+
+
+
+
+
+
+
