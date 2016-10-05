@@ -181,6 +181,38 @@ SELECT * FROM Customers
 WHERE Country NOT LIKE '%land%';  # selects all customers with Country NOT containing the pattern "land" 
 
 
+# SQL Wildcard Characters 
+# % A substitute for zero or more characters 
+# _ A substitute for a single character
+# [charlist] Sets and ranges of characters to match 
+# [^charlist] Matches only a character not specified within the brackets 
+# [!charlist] 
+SELECT * FROM Customers
+WHERE City LIKE 'ber%';  # selects all customers with a City starting with "ber" 
+
+SELECT * FROM Customers
+WHERE City LIKE '%es%'  # selects all customers with a City containing the pattern "es" 
+
+SELECT * FROM Customers
+WHERE City LIKE '_erlin';  # selects all customers with a City starting with any character, followed by "erlin" 
+
+SELECT * FROM Customers
+WHERE City LIKE 'L_n_on';  # selects all customers with a City starting with "L", followed by any character, followed by "n", followed by any character, followed by "on" 
+
+SELECT * FROM Customers
+WHERE City LIKE '[bsp]%';  # selects all customers with a City starting with "b", "s", or "p" 
+
+SELECT * FROM Customers
+WHERE City LIKE '[a-c]%';  # selects all customers with a City starting with "a", "b", or "c" 
+
+SELECT * FROM Customers
+WHERE City LIKE '[!bsp]%';   # selects all customers with a City NOT starting with "b", "s", or "p" 
+
+SELECT * FROM Customers
+WHERE City NOT LIKE '[bsp]%';   # selects all customers with a City NOT starting with "b", "s", or "p" 
+
+
+
 
 
 
