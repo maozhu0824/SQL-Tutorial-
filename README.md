@@ -212,6 +212,49 @@ SELECT * FROM Customers
 WHERE City NOT LIKE '[bsp]%';   # selects all customers with a City NOT starting with "b", "s", or "p" 
 
 
+# IN operator: allows you to specify multiple values in a WHERE clause.
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1,value2,...);
+
+SELECT * FROM Customers
+WHERE City in ('Paris','London'); 
+
+# SQL BETWEEN Operator: BETWEEN operator selects values within a range. The values can be numbers, text, or dates.
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20; 
+
+# SQL Aliases: SQL aliases are used to temporarily rename a table or a column heading.SQL aliases are used to give a database table, or a column in a table, a temporary name. Basically aliases are created to make column names more readable.
+SELECT column_name AS alias_name
+FROM table_name;
+
+SELECT column_name(s)
+FROM table_name AS alias_name; 
+
+SELECT CustomerName AS Customer, ContactName AS [Contact Person]
+FROM Customers;
+
+SELECT CustomerName, Address+', '+City+', '+PostalCode+', '+Country AS Address
+FROM Customers;
+
+# Mysql 
+SELECT CustomerName, CONCAT(Address,', ',City,', ',PostalCode,', ',Country) AS Address
+FROM Customers;
+
+# The following SQL statement selects all the orders from the customer with CustomerID=4 (Around the Horn). We use the "Customers" and "Orders" tables, and give them the table aliases of "c" and "o" respectively (Here we have used aliases to make the SQL shorter):
+
+SELECT o.OrderID, o.OrderDate, c.CustomerName
+FROM Customers AS c, Orders AS o
+WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID; 
+
+
+
+
+
 
 
 
