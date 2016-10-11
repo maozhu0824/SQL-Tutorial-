@@ -252,7 +252,103 @@ FROM Customers AS c, Orders AS o
 WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID; 
 
 
+# SQL joins are used to combine rows from two or more tables.
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID;
 
+# INNER JOIN: Returns all rows when there is at least one match in BOTH tables
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT column_name(s)
+FROM table1
+JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+INNER JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+# Note: The INNER JOIN keyword selects all rows from both tables as long as there is a match between the columns. If there are rows in the "Customers" table that do not have matches in "Orders", these customers will NOT be listed.
+
+
+# LEFT JOIN: Return all rows from the left table, and the matched rows from the right table
+# The LEFT JOIN keyword returns all rows from the left table (table1), with the matching rows in the right table (table2). The result is NULL in the right side when there is no match.
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT column_name(s)
+FROM table1
+LEFT OUTER JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;  #Customer Name all show up, if Orders ID not found, then leave blank. The LEFT JOIN keyword returns all the rows from the left table (Customers), even if there are no matches in the right table (Orders).
+
+
+# RIGHT JOIN: Return all rows from the right table, and the matched rows from the left table
+# The RIGHT JOIN keyword returns all rows from the right table (table2), with the matching rows in the left table (table1). The result is NULL in the left side when there is no match.
+SELECT column_name(s)
+FROM table1
+RIGHT JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT column_name(s)
+FROM table1
+RIGHT OUTER JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Orders.OrderID, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees
+ON Orders.EmployeeID=Employees.EmployeeID
+ORDER BY Orders.OrderID;   #The RIGHT JOIN keyword returns all the rows from the right table (Employees), even if there are no matches in the left table (Orders).
+
+
+# FULL JOIN: Return all rows when there is a match in ONE of the tables
+# The FULL OUTER JOIN keyword combines the result of both LEFT and RIGHT joins.
+SELECT column_name(s)
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column_name=table2.column_name;
+
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders
+ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName; # The FULL OUTER JOIN keyword returns all the rows from the left table (Customers), and all the rows from the right table (Orders). If there are rows in "Customers" that do not have matches in "Orders", or if there are rows in "Orders" that do not have matches in "Customers", those rows will be listed as well.
+
+
+# SQL UNION operator combines the result of two or more SELECT statements.
+# Notice that each SELECT statement within the UNION must have the same number of columns. The columns must also have similar data types. Also, the columns in each SELECT statement must be in the same order.
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+# Note: The UNION operator selects only distinct values by default. To allow duplicate values, use the ALL keyword with UNION. PS: The column names in the result-set of a UNION are usually equal to the column names in the first SELECT statement in the UNION.
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City; 
+
+# UNION cannot be used to list ALL cities from the two tables. If several customers and suppliers share the same city, each city will only be listed once. UNION selects only distinct values. Use UNION ALL to also select duplicate values!
+SELECT City FROM Customers
+UNION ALL
+SELECT City FROM Suppliers
+ORDER BY City; 
 
 
 
